@@ -3,6 +3,7 @@ package dvie.twoshotcore;
 import com.plotsquared.core.PlotAPI;
 import dvie.twoshotcore.commands.TwoShotCoreCommands;
 import dvie.twoshotcore.files.FeaturesConfig;
+import dvie.twoshotcore.listeners.StackRemoverListener;
 import dvie.twoshotcore.util.Util;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -25,6 +26,7 @@ public final class TwoShotCore extends JavaPlugin {
         core = this;
         new TwoShotCoreCommands();
         reloadConfigs();
+        new StackRemoverListener(this);
     }
 
     @Override

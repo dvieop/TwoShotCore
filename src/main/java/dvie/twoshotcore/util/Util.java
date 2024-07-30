@@ -1,7 +1,16 @@
 package dvie.twoshotcore.util;
 
+import com.sk89q.worldedit.EditSession;
+import com.sk89q.worldedit.WorldEdit;
+import com.sk89q.worldedit.bukkit.BukkitAdapter;
+import com.sk89q.worldedit.function.mask.BlockTypeMask;
+import com.sk89q.worldedit.function.mask.Mask;
+import com.sk89q.worldedit.regions.CuboidRegion;
+import com.sk89q.worldedit.regions.Region;
+import com.sk89q.worldedit.world.block.BlockTypes;
 import dev.splityosis.configsystem.configsystem.actionsystem.ActionData;
 import dev.splityosis.configsystem.configsystem.actionsystem.Actions;
+import dvie.twoshotcore.TwoShotCore;
 import net.minecraft.server.v1_8_R3.IChatBaseComponent;
 import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
 import org.bukkit.*;
@@ -388,5 +397,17 @@ public class Util {
         Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin(pluginName);
         File file = new File(plugin.getDataFolder(), path.replace("/", System.lineSeparator()));
         return YamlConfiguration.loadConfiguration(file);
+    }
+
+    public static void clearSand(Location start) {
+        Region region = new CuboidRegion(BukkitAdapter.adapt(start.getWorld()), BukkitAdapter.asBlockVector(start), BukkitAdapter.asBlockVector(start.clone().add(0, - start.getBlockY(), 0)));
+        replaceBlocks(region, (Set<Material>) TwoShotCore.featuresConfig.boneItems, Material.AIR);
+    }
+
+    public static void replaceBlocks(Region region, Set<Material> from, Material to) {
+        try (EditSession session = WorldEdit.getInstance().newEditSession(region.getWorld())) {
+            Mask mask = new BlockTypeMask(session, from.stream().map((material) -> BlockTypes.get(material.name().toLowerCase())).collect(Collectors.toSet()));
+            session.replaceBlocks(region, mask, BlockTypes.get(to.name().toLowerCase()));
+        };
     }
 }
