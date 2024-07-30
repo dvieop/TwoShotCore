@@ -17,4 +17,40 @@ public class CannonItems {
 
         Util.giveItemsToPlayer(player, itemStack, 1);
     }
+
+    public static void sandMagicSand(Player player) {
+        ItemStack itemStack = TwoShotCore.featuresConfig.magicSand;
+        NBTItem nbtItem = new NBTItem(itemStack);
+        nbtItem.setString("cannonitem_identifier", "magic_sand");
+        itemStack = nbtItem.getItem();
+
+        Util.giveItemsToPlayer(player, itemStack, 1);
+    }
+
+    public static void redSandMagicSand(Player player) {
+        ItemStack itemStack = TwoShotCore.featuresConfig.magicSandRed;
+        NBTItem nbtItem = new NBTItem(itemStack);
+        nbtItem.setString("cannonitem_identifier", "red_magic_sand");
+        itemStack = nbtItem.getItem();
+
+        Util.giveItemsToPlayer(player, itemStack, 1);
+    }
+
+    public static void b36MagicSand(Player player) {
+        ItemStack itemStack = TwoShotCore.featuresConfig.magicSandb36;
+        NBTItem nbtItem = new NBTItem(itemStack);
+        nbtItem.setString("cannonitem_identifier", "36_magic_sand");
+        itemStack = nbtItem.getItem();
+
+        Util.giveItemsToPlayer(player, itemStack, 1);
+    }
+
+    public static void gravelMagicSand(Player player) {
+        ItemStack itemStack = TwoShotCore.featuresConfig.magicSandGravel;
+        NBTItem nbtItem = new NBTItem(itemStack);
+        nbtItem.setString("cannonitem_identifier", "gravel_magic_sand");
+        itemStack = nbtItem.getItem();
+
+        Util.giveItemsToPlayer(player, itemStack, 1);
+    }
 }

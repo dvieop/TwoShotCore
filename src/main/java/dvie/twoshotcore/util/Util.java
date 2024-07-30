@@ -25,6 +25,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
@@ -409,5 +410,31 @@ public class Util {
             Mask mask = new BlockTypeMask(session, from.stream().map((material) -> BlockTypes.get(material.name().toLowerCase())).collect(Collectors.toSet()));
             session.replaceBlocks(region, mask, BlockTypes.get(to.name().toLowerCase()));
         };
+    }
+
+    public static void addEnchantToItem(ItemStack item, Enchantment enchantment, int level, boolean hideEnchants) {
+        ItemMeta meta = item.getItemMeta();
+        meta.addEnchant(enchantment, level, true);
+        if (hideEnchants) {
+            meta.addItemFlags(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS});
+        }
+        item.setItemMeta(meta);
+    }
+
+    public static ItemStack createItemStack(Material material, int amount, String name, List<String> lore, boolean enchanted) {
+        ItemStack itemStack = new ItemStack(material, amount);
+        ItemMeta meta = itemStack.getItemMeta();
+
+        if (name != null)
+            meta.setDisplayName(colorize(name));
+        if (lore != null)
+            meta.setLore(colorize(lore));
+        if (enchanted) {
+            meta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
+            meta.addItemFlags(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS});
+        }
+
+        itemStack.setItemMeta(meta);
+        return itemStack;
     }
 }

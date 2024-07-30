@@ -46,4 +46,15 @@ public class FeaturesConfig extends AnnotatedConfig {
     @ConfigField(path = "bone.removedMessage")
     public String boneRemovedMessage = "&6(!) Removed &f%sand% &6at:";
 
+    @ConfigField(path = "magicSand.item.b36")
+    public ItemStack magicSandb36 = Util.createItemStack(Material.PISTON_BASE, 1, "&3&lBlock 36 &8(&fPlace&8)", Arrays.asList("&7Use this block to place the unobtainable", "&7BLOCK 36", "", "&f&lVISIBLE: &7TRUE", "&7(Punch with block to toggle visibility)"), true);
+
+    @ConfigField(path = "magicSand.item.sand")
+    public ItemStack magicSand = Util.createItemStack(Material.SAND, 1, "&3&lMagic Sand &8(&fSand&8)", Arrays.asList("&7Use this magic block to automatically", "&7place sand under its placed location"), true);
+
+    @ConfigField(path = "magicSand.item.redSand")
+    public ItemStack magicSandRed = Util.createItemStack(Material.RED_SANDSTONE, 1, "&3&lMagic Sand &8(&fRed Sand&8)", Arrays.asList("&7Use this magic block to automatically", "&7place red sand under its placed location"), true);
+
+    @ConfigField(path = "magicSand.item.gravel")
+    public ItemStack magicSandGravel = Util.createItemStack(Material.GRAVEL, 1, "&3&lMagic Sand &8(&fGravel&8)", Arrays.asList("&7Use this magic block to automatically", "&7place gravel under its placed location"), true);
 }
