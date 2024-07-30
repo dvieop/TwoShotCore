@@ -1,0 +1,5 @@
+name: TwoShotCore
+version: '${project.version}'
+main: dvie.twoshotcore.TwoShotCore
+depend:
+  - PlotSquared
